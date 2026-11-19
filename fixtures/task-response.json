@@ -1,0 +1,29 @@
+{
+  "code": 200,
+  "data": {
+    "task_id": "EXAMPLE_TASK_ID",
+    "status": "succeeded",
+    "public_id": "x/posts",
+    "result_count": 1,
+    "error_message": null,
+    "credits_amount": 0,
+    "created_time": "2026-07-17T08:00:00Z",
+    "finished_time": "2026-07-17T08:00:03Z",
+    "results": {
+      "limit": 100,
+      "next_cursor": null,
+      "has_more": false,
+      "items": [
+        {
+          "id": "EXAMPLE_RECORD_ID",
+          "platform": "x",
+          "resource": "posts",
+          "type": "example",
+          "url": "https://example.com/x/posts/public-record",
+          "published_at": null,
+          "collected_at": "2026-07-17T08:00:02Z"
+        }
+      ]
+    }
+  }
+}

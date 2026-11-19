@@ -1,0 +1,1532 @@
+{
+  "schemaVersion": 1,
+  "platform": "x",
+  "platformName": "X (Twitter)",
+  "baseUrl": "https://api.socq.ai",
+  "creditUsd": 0.005,
+  "endpoints": [
+    {
+      "publicId": "x/posts",
+      "name": "Twitter Tweet Scraper API",
+      "description": "Enrich known public X post URLs with normalized text, author identity, engagement, media, entities, and conversation context.",
+      "method": "POST",
+      "path": "/v1/x/posts",
+      "payload": "payloads/posts.json",
+      "launchedAt": "2026-07-17",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 1,
+        "estimateInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/posts",
+      "landingUrl": "https://socq.ai/apis/x/posts",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ]
+      }
+    },
+    {
+      "publicId": "x/profiles",
+      "name": "Twitter Profile Scraper API",
+      "description": "Turn public X usernames into normalized identity, profile, audience, and account-status records for enrichment and research workflows.",
+      "method": "POST",
+      "path": "/v1/x/profiles",
+      "payload": "payloads/profiles.json",
+      "launchedAt": "2026-07-17",
+      "price": "0.6 credits ($0.003) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.6,
+        "estimateResultCount": 1,
+        "estimateInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/profiles",
+      "landingUrl": "https://socq.ai/apis/x/profiles",
+      "required": [
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public account usernames."
+          }
+        },
+        "required": [
+          "usernames"
+        ]
+      }
+    },
+    {
+      "publicId": "x/user-posts",
+      "name": "Twitter User Tweets Scraper API",
+      "description": "Collect recent public posts with replies excluded from selected X accounts for monitoring, publishing analysis, and recurring datasets.",
+      "method": "POST",
+      "path": "/v1/x/user-posts",
+      "payload": "payloads/user-posts.json",
+      "launchedAt": "2026-07-17",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 20,
+        "estimateResultCountPerInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/user-posts",
+      "landingUrl": "https://socq.ai/apis/x/user-posts",
+      "required": [
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000
+          },
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public account usernames."
+          }
+        },
+        "required": [
+          "usernames"
+        ]
+      }
+    },
+    {
+      "publicId": "x/search",
+      "name": "Twitter Search API",
+      "description": "Build structured public X post datasets from a focused query with Latest or Top ordering for discovery, monitoring, and research.",
+      "method": "POST",
+      "path": "/v1/x/search",
+      "payload": "payloads/search.json",
+      "launchedAt": "2026-07-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 20,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/search",
+      "landingUrl": "https://socq.ai/apis/x/search",
+      "required": [
+        "query"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Search query."
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000
+          },
+          "sort_by": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "publicId": "x/followers-list",
+      "name": "X Followers List API",
+      "description": "Collect public follower accounts for one or more X usernames, with normalized identities, visible profile metrics, asynchronous tasks, and cursor-based retrieval.",
+      "method": "POST",
+      "path": "/v1/x/followers-list",
+      "payload": "payloads/followers-list.json",
+      "launchedAt": "2026-07-26",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 200,
+        "estimateResultCountPerInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/followers-list",
+      "landingUrl": "https://socq.ai/apis/x/followers-list",
+      "required": [
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 200,
+            "maximum": 2000,
+            "default": 200,
+            "multipleOf": 200
+          },
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public account usernames."
+          }
+        },
+        "required": [
+          "usernames"
+        ]
+      }
+    },
+    {
+      "publicId": "x/following-list",
+      "name": "X Following List API",
+      "description": "Collect public profiles followed by one or more X usernames, returning normalized identity, profile context, account signals, visible counters, and source username.",
+      "method": "POST",
+      "path": "/v1/x/following-list",
+      "payload": "payloads/following-list.json",
+      "launchedAt": "2026-07-26",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 200,
+        "estimateResultCountPerInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/following-list",
+      "landingUrl": "https://socq.ai/apis/x/following-list",
+      "required": [
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 200,
+            "maximum": 2000,
+            "default": 200,
+            "multipleOf": 200
+          },
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public account usernames."
+          }
+        },
+        "required": [
+          "usernames"
+        ]
+      }
+    },
+    {
+      "publicId": "x/post-quotes",
+      "name": "X Post Quotes API",
+      "description": "Collect public quote posts that reference known X status URLs, preserving commentary, author context, visible engagement, media, and source-post traceability.",
+      "method": "POST",
+      "path": "/v1/x/post-quotes",
+      "payload": "payloads/post-quotes.json",
+      "launchedAt": "2026-07-26",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/post-quotes",
+      "landingUrl": "https://socq.ai/apis/x/post-quotes",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ]
+      }
+    },
+    {
+      "publicId": "x/post-replies",
+      "name": "X Post Replies API",
+      "description": "Collect public replies from one or more X post URLs, returning reply text, authors, visible engagement, media, and parent context with per-post limits and sorting.",
+      "method": "POST",
+      "path": "/v1/x/post-replies",
+      "payload": "payloads/post-replies.json",
+      "launchedAt": "2026-07-26",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/post-replies",
+      "landingUrl": "https://socq.ai/apis/x/post-replies",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "sort_by": {
+            "type": "string",
+            "minLength": 1
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ]
+      }
+    },
+    {
+      "publicId": "x/post-retweeters",
+      "name": "X Post Retweeters API",
+      "description": "Resolve public X and Twitter status URLs into a task-level unique set of normalized public profiles for accounts that reposted those posts.",
+      "method": "POST",
+      "path": "/v1/x/post-retweeters",
+      "payload": "payloads/post-retweeters.json",
+      "launchedAt": "2026-07-25",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/post-retweeters",
+      "landingUrl": "https://socq.ai/apis/x/post-retweeters",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 100
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ]
+      }
+    },
+    {
+      "publicId": "x/trends",
+      "name": "X Trends API",
+      "description": "Collect current public X trends for known numeric location identifiers, preserving source rank, query, description, location context, and collection time.",
+      "method": "POST",
+      "path": "/v1/x/trends",
+      "payload": "payloads/trends.json",
+      "launchedAt": "2026-07-26",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "woeids",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/trends",
+      "landingUrl": "https://socq.ai/apis/x/trends",
+      "required": [
+        "woeids"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100
+          },
+          "woeids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[0-9]+$"
+            },
+            "minItems": 1,
+            "description": "Numeric X location identifiers represented as strings."
+          }
+        },
+        "required": [
+          "woeids"
+        ]
+      }
+    },
+    {
+      "publicId": "x/mentions",
+      "name": "Twitter Mentions API",
+      "description": "Collect public tweets that mention a target user handle, with support for date range filtering and engagement metrics.",
+      "method": "POST",
+      "path": "/v1/x/mentions",
+      "payload": "payloads/mentions.json",
+      "launchedAt": "2026-09-11",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 20,
+        "estimateResultCountPerInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/mentions",
+      "landingUrl": "https://socq.ai/apis/x/mentions",
+      "required": [
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "end_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 20,
+            "multipleOf": 20
+          },
+          "start_date": {
+            "type": "string",
+            "minLength": 1
+          },
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public account usernames."
+          }
+        },
+        "required": [
+          "usernames"
+        ]
+      }
+    },
+    {
+      "publicId": "x/search-users",
+      "name": "Twitter User Search API",
+      "description": "Search public X user accounts by keyword, returning normalized identity, bio, verified status, and audience metrics.",
+      "method": "POST",
+      "path": "/v1/x/search-users",
+      "payload": "payloads/search-users.json",
+      "launchedAt": "2026-09-11",
+      "price": "0.6 credits ($0.003) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.6,
+        "estimateResultCount": 20,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/search-users",
+      "landingUrl": "https://socq.ai/apis/x/search-users",
+      "required": [
+        "query"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Search query."
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 20,
+            "multipleOf": 20
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "publicId": "x/community",
+      "name": "X Community API",
+      "description": "Read public X community details from community links, including descriptions, member counts and rules, with support for looking up several communities at once.",
+      "method": "POST",
+      "path": "/v1/x/community",
+      "payload": "payloads/community.json",
+      "launchedAt": "2026-10-16",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "emptyResultPolicy": "base_only",
+        "estimateInputField": "urls"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/community",
+      "landingUrl": "https://socq.ai/apis/x/community",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide public X community URLs in urls, using /i/communities/{numeric_id}."
+      }
+    },
+    {
+      "publicId": "x/community-posts",
+      "name": "X Community Posts API",
+      "description": "Get public posts from X community links, with post text, authors and engagement counts returned together and a separate result limit for each community.",
+      "method": "POST",
+      "path": "/v1/x/community-posts",
+      "payload": "payloads/community-posts.json",
+      "launchedAt": "2026-10-16",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "emptyResultPolicy": "base_only",
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/community-posts",
+      "landingUrl": "https://socq.ai/apis/x/community-posts",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide public X community URLs in urls. results_limit applies to each URL, defaults to 100, and must be a multiple of 20 between 20 and 2000."
+      }
+    },
+    {
+      "publicId": "x/thread-context",
+      "name": "X Thread Context API",
+      "description": "Read the context around an X post from its link, with the target post, earlier posts it replies to and public replies returned together with relationship IDs.",
+      "method": "POST",
+      "path": "/v1/x/thread-context",
+      "payload": "payloads/thread-context.json",
+      "launchedAt": "2026-10-16",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "emptyResultPolicy": "base_only",
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/thread-context",
+      "landingUrl": "https://socq.ai/apis/x/thread-context",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000,
+            "default": 100
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide X post URLs in urls. results_limit applies to each URL, defaults to 100, and accepts integers from 1 to 2000. Results retain the target post and its thread relationships."
+      }
+    },
+    {
+      "publicId": "x/user-about",
+      "name": "X Account Location API",
+      "description": "Look up where an X account is based from its username, with the country X lists, how the account connects to X, its join date and how often it changed its username.",
+      "method": "POST",
+      "path": "/v1/x/user-about",
+      "payload": "payloads/user-about.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 1,
+        "estimateInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/user-about",
+      "landingUrl": "https://socq.ai/apis/x/user-about",
+      "required": [
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public account usernames."
+          }
+        },
+        "required": [
+          "usernames"
+        ],
+        "description": "Provide X usernames in usernames, with or without @. Each account returns one row with the country it is based in, how it connects to X, its join date and username change count."
+      }
+    },
+    {
+      "publicId": "x/verified-followers",
+      "name": "X Verified Followers API",
+      "description": "Collect the verified accounts that follow any public X profile, with each follower's ID, username, display name, avatar, profile link and join date.",
+      "method": "POST",
+      "path": "/v1/x/verified-followers",
+      "payload": "payloads/verified-followers.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/verified-followers",
+      "landingUrl": "https://socq.ai/apis/x/verified-followers",
+      "required": [
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public account usernames."
+          }
+        },
+        "required": [
+          "usernames"
+        ],
+        "description": "Provide X usernames in usernames. results_limit applies to each account, defaults to 100, and must be a multiple of 20 between 20 and 2000."
+      }
+    },
+    {
+      "publicId": "x/list-posts",
+      "name": "X List Tweets API",
+      "description": "Read the timeline of a public X list from its URL, newest first, with each post's text, author, media and engagement and reposts flagged with their original author.",
+      "method": "POST",
+      "path": "/v1/x/list-posts",
+      "payload": "payloads/list-posts.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/list-posts",
+      "landingUrl": "https://socq.ai/apis/x/list-posts",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide public X list URLs in urls, using /i/lists/{numeric_id}. results_limit applies to each list, defaults to 100, and must be a multiple of 20 between 20 and 2000. Reposts shared by list members are included and marked."
+      }
+    },
+    {
+      "publicId": "x/list-members",
+      "name": "Twitter List Members API",
+      "description": "Export the accounts on a public X list from its URL, each with bio, location, website, verification status and follower, following and post counts.",
+      "method": "POST",
+      "path": "/v1/x/list-members",
+      "payload": "payloads/list-members.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/list-members",
+      "landingUrl": "https://socq.ai/apis/x/list-members",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide public X list URLs in urls, using /i/lists/{numeric_id}. results_limit applies to each list, defaults to 100, and must be a multiple of 20 between 20 and 2000."
+      }
+    },
+    {
+      "publicId": "x/list-followers",
+      "name": "Twitter List Followers API",
+      "description": "Collect the accounts that follow a public X list from its URL, each as a full profile with bio, location and follower, following and post counts.",
+      "method": "POST",
+      "path": "/v1/x/list-followers",
+      "payload": "payloads/list-followers.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/list-followers",
+      "landingUrl": "https://socq.ai/apis/x/list-followers",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide public X list URLs in urls, using /i/lists/{numeric_id}. results_limit applies to each list, defaults to 100, and must be a multiple of 20 between 20 and 2000."
+      }
+    },
+    {
+      "publicId": "x/community-members",
+      "name": "X Community Members API",
+      "description": "Export the members of a public X community from its URL, each with bio, location, website, verification status and follower, following and post counts.",
+      "method": "POST",
+      "path": "/v1/x/community-members",
+      "payload": "payloads/community-members.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/community-members",
+      "landingUrl": "https://socq.ai/apis/x/community-members",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000,
+            "default": 100,
+            "multipleOf": 20
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide public X community URLs in urls, using /i/communities/{numeric_id}. results_limit applies to each community, defaults to 100, and must be a multiple of 20 between 20 and 2000."
+      }
+    },
+    {
+      "publicId": "x/community-moderators",
+      "name": "X Community Moderators API",
+      "description": "Get the admins and moderators who run a public X community from its URL, returned in one task as full profiles with bios and audience counts.",
+      "method": "POST",
+      "path": "/v1/x/community-moderators",
+      "payload": "payloads/community-moderators.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 10,
+        "estimateResultCountPerInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/community-moderators",
+      "landingUrl": "https://socq.ai/apis/x/community-moderators",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide public X community URLs in urls, using /i/communities/{numeric_id}. Each community returns its full moderator team, including admins."
+      }
+    },
+    {
+      "publicId": "x/search-communities",
+      "name": "X Communities Search API",
+      "description": "Find X communities by keyword, with each community's name, member count, banner and link ready for the member, moderator and post endpoints.",
+      "method": "POST",
+      "path": "/v1/x/search-communities",
+      "payload": "payloads/search-communities.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 20,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/search-communities",
+      "landingUrl": "https://socq.ai/apis/x/search-communities",
+      "required": [
+        "query"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Search query."
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 10,
+            "maximum": 500,
+            "default": 20,
+            "multipleOf": 10
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "description": "Provide a keyword in query. results_limit defaults to 20 and must be a multiple of 10 between 10 and 500."
+      }
+    },
+    {
+      "publicId": "x/article",
+      "name": "X Articles API",
+      "description": "Turn X Articles into clean text from the post URL, with the title, preview line, full body, cover image, author and likes, replies, quotes and views.",
+      "method": "POST",
+      "path": "/v1/x/article",
+      "payload": "payloads/article.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 1,
+        "estimateInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/article",
+      "landingUrl": "https://socq.ai/apis/x/article",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide the X post URLs that publish each Article in urls, using /{username}/status/{post_id}."
+      }
+    },
+    {
+      "publicId": "x/space",
+      "name": "X Spaces API",
+      "description": "Look up X Spaces from their links, with the title, status, scheduled start, hosts, speakers, live listener count, replay count and replay availability.",
+      "method": "POST",
+      "path": "/v1/x/space",
+      "payload": "payloads/space.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 1,
+        "estimateInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/space",
+      "landingUrl": "https://socq.ai/apis/x/space",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide X Space URLs in urls, using /i/spaces/{space_id}. Scheduled, live and ended Spaces are supported."
+      }
+    },
+    {
+      "publicId": "x/user-media",
+      "name": "Twitter Media Scraper API",
+      "description": "Collect the photos, videos and GIFs an X account has posted from its username, newest first, with the full-quality media files, captions and engagement counts.",
+      "method": "POST",
+      "path": "/v1/x/user-media",
+      "payload": "payloads/user-media.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 20,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/user-media",
+      "landingUrl": "https://socq.ai/apis/x/user-media",
+      "required": [
+        "username"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 20
+          },
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A public account username."
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "description": "Provide one X username in username. results_limit defaults to 20 and accepts integers from 1 to 1000. Results are the account's posts that carry photos, videos or GIFs, newest first."
+      }
+    },
+    {
+      "publicId": "x/user-replies",
+      "name": "X User Replies API",
+      "description": "Collect the replies an X account has written from its username, newest first, each paired with the post it answers and its author.",
+      "method": "POST",
+      "path": "/v1/x/user-replies",
+      "payload": "payloads/user-replies.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 20,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/user-replies",
+      "landingUrl": "https://socq.ai/apis/x/user-replies",
+      "required": [
+        "username"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000,
+            "default": 20
+          },
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A public account username."
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "description": "Provide one X username in username. results_limit defaults to 20 and accepts integers from 1 to 1000. Each reply comes with the post it answers."
+      }
+    },
+    {
+      "publicId": "x/check-follow",
+      "name": "Twitter Follow Checker API",
+      "description": "Check whether one X account follows up to 100 others and whether each follows it back, with a mutual-follow flag for every pair.",
+      "method": "POST",
+      "path": "/v1/x/check-follow",
+      "payload": "payloads/check-follow.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 1,
+        "estimateInputField": "usernames",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/check-follow",
+      "landingUrl": "https://socq.ai/apis/x/check-follow",
+      "required": [
+        "username",
+        "usernames"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The X account to check, with or without @."
+          },
+          "usernames": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "X accounts to compare it with, with or without @.",
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "username",
+          "usernames"
+        ],
+        "description": "Provide the account to check in username and up to 100 accounts to compare it with in usernames. Each pair returns whether username follows the other account and whether it is followed back."
+      }
+    },
+    {
+      "publicId": "x/post-transcript",
+      "name": "Twitter Video Transcript API",
+      "description": "Turn the speech in X videos into plain text from the post URL, with the video length returned alongside each transcript.",
+      "method": "POST",
+      "path": "/v1/x/post-transcript",
+      "payload": "payloads/post-transcript.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 1,
+        "estimateInputField": "urls",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/x/post-transcript",
+      "landingUrl": "https://socq.ai/apis/x/post-transcript",
+      "required": [
+        "urls"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "description": "Public profile or content URLs."
+          }
+        },
+        "required": [
+          "urls"
+        ],
+        "description": "Provide X post URLs that contain a video in urls, using /{username}/status/{post_id}. Each video returns its spoken text and duration."
+      }
+    }
+  ]
+}
