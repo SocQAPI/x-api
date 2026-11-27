@@ -10,6 +10,8 @@
 
 [Browse X (Twitter) APIs](https://socq.ai/apis/x?utm_source=github&utm_medium=readme&utm_campaign=socq-x-api) · [Get an API key](https://socq.ai/dashboard/api-key?utm_source=github&utm_medium=readme&utm_campaign=socq-x-api) · [Documentation](https://docs.socq.ai/api-manual/x/overview) · [All SocQ examples](https://github.com/SocQAPI/socq-examples)
 
+> **Need a ready-made app?** [Open Social Listening](https://github.com/SocQAPI/open-social-listening) is a free, open-source social listening tool you host yourself, built on SocQ search endpoints. It tracks brand, competitor and topic mentions on Reddit, X, YouTube, TikTok, news and the web.
+
 ## Endpoints
 
 Prices are in SocQ credits; 1 credit = $0.005.
